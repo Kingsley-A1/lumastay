@@ -1,0 +1,288 @@
+{
+  "rooms": [
+    {
+      "id": "1",
+      "slug": "ocean-view-standard",
+      "name": "Ocean View Standard",
+      "type": "standard",
+      "description": "A comfortable and elegantly appointed standard room with sweeping ocean views. Perfect for the traveler who wants quality without excess. Featuring modern furnishings and a private balcony to enjoy the sunrise.",
+      "amenities": ["WiFi", "Air Conditioning", "Mini Bar", "Flat Screen TV", "Room Service", "Safe", "Hair Dryer", "Balcony"],
+      "images": [
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+        "https://images.unsplash.com/photo-1586105251261-72a756497a11?w=800",
+        "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800",
+        "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+      ],
+      "pricePerNight": 189,
+      "maxGuests": 2,
+      "bedType": "Queen",
+      "size": 320,
+      "floor": 3,
+      "status": "available"
+    },
+    {
+      "id": "2",
+      "slug": "garden-deluxe",
+      "name": "Garden Deluxe Suite",
+      "type": "deluxe",
+      "description": "Immerse yourself in lush tropical surroundings with our Garden Deluxe room. Floor-to-ceiling windows frame breathtaking garden views. Indulge in premium amenities including a soaking tub and walk-in shower.",
+      "amenities": ["WiFi", "Air Conditioning", "Mini Bar", "Flat Screen TV", "Room Service", "Soaking Tub", "Walk-in Shower", "Balcony", "Safe", "Coffee Maker", "Bathrobe"],
+      "images": [
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800",
+        "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?w=800",
+        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
+        "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?w=800"
+      ],
+      "pricePerNight": 289,
+      "maxGuests": 2,
+      "bedType": "King",
+      "size": 480,
+      "floor": 4,
+      "status": "available"
+    },
+    {
+      "id": "3",
+      "slug": "executive-suite",
+      "name": "Executive Suite",
+      "type": "suite",
+      "description": "The Executive Suite redefines luxury with a separate living room, dining area, and a masterfully designed bedroom. Ideal for extended stays or business travelers who demand the finest accommodations.",
+      "amenities": ["WiFi", "Air Conditioning", "Mini Bar", "Flat Screen TV", "Room Service", "Soaking Tub", "Walk-in Shower", "Private Terrace", "Safe", "Coffee Maker", "Bathrobe", "Dining Area", "Living Room", "Kitchenette"],
+      "images": [
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+        "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+        "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800",
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800"
+      ],
+      "pricePerNight": 489,
+      "maxGuests": 4,
+      "bedType": "King",
+      "size": 760,
+      "floor": 6,
+      "status": "available"
+    },
+    {
+      "id": "4",
+      "slug": "penthouse-horizon",
+      "name": "Penthouse Horizon",
+      "type": "penthouse",
+      "description": "Our crown jewel. The Penthouse Horizon offers 360-degree panoramic views from an exclusive rooftop terrace. With two bedrooms, a private pool, and butler service, this is the pinnacle of luxury hospitality.",
+      "amenities": ["WiFi", "Air Conditioning", "Full Bar", "Multiple Flat Screen TVs", "24/7 Butler", "Soaking Tub", "Rain Shower", "Private Pool", "Rooftop Terrace", "Safe", "Coffee Machine", "Bathrobe", "Full Kitchen", "Dining Room", "Living Room", "Private Gym"],
+      "images": [
+        "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=800",
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+        "https://images.unsplash.com/photo-1587985064135-0366536eab42?w=800",
+        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800"
+      ],
+      "pricePerNight": 1299,
+      "maxGuests": 6,
+      "bedType": "Two Kings",
+      "size": 2400,
+      "floor": 12,
+      "status": "available"
+    },
+    {
+      "id": "5",
+      "slug": "coastal-deluxe",
+      "name": "Coastal Deluxe Room",
+      "type": "deluxe",
+      "description": "Wake up to the sound of waves in our Coastal Deluxe room. Featuring nautical-inspired décor with a modern twist, this room offers direct beach access and a spacious private terrace perfect for sunset cocktails.",
+      "amenities": ["WiFi", "Air Conditioning", "Mini Bar", "Flat Screen TV", "Room Service", "Walk-in Shower", "Private Terrace", "Safe", "Coffee Maker", "Bathrobe", "Beach Access"],
+      "images": [
+        "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=800",
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
+        "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+      ],
+      "pricePerNight": 329,
+      "maxGuests": 2,
+      "bedType": "King",
+      "size": 520,
+      "floor": 2,
+      "status": "occupied"
+    },
+    {
+      "id": "6",
+      "slug": "pool-view-standard",
+      "name": "Pool View Standard",
+      "type": "standard",
+      "description": "Overlook our stunning infinity pool from the comfort of your private balcony. The Pool View Standard combines elegance and value, making it a guest favourite for families and couples alike.",
+      "amenities": ["WiFi", "Air Conditioning", "Mini Bar", "Flat Screen TV", "Room Service", "Safe", "Hair Dryer", "Balcony", "Pool Access"],
+      "images": [
+        "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800",
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+        "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800",
+        "https://images.unsplash.com/photo-1586105251261-72a756497a11?w=800"
+      ],
+      "pricePerNight": 219,
+      "maxGuests": 3,
+      "bedType": "Queen",
+      "size": 380,
+      "floor": 2,
+      "status": "available"
+    },
+    {
+      "id": "7",
+      "slug": "family-suite",
+      "name": "Family Suite",
+      "type": "suite",
+      "description": "Thoughtfully designed for families, our Family Suite features a master bedroom and a cozy bunk room for the little ones. Enjoy a shared living space, kitchenette, and direct access to the family pool.",
+      "amenities": ["WiFi", "Air Conditioning", "Mini Bar", "Multiple Flat Screen TVs", "Room Service", "Walk-in Shower", "Bathtub", "Safe", "Coffee Maker", "Kitchenette", "Living Room", "Bunk Beds", "Pool Access"],
+      "images": [
+        "https://images.unsplash.com/photo-1605346434674-a440ca4dc4c0?w=800",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+        "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800",
+        "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
+      ],
+      "pricePerNight": 549,
+      "maxGuests": 5,
+      "bedType": "King + Bunks",
+      "size": 920,
+      "floor": 1,
+      "status": "maintenance"
+    },
+    {
+      "id": "8",
+      "slug": "sky-lounge-suite",
+      "name": "Sky Lounge Suite",
+      "type": "suite",
+      "description": "Perched high above the city, the Sky Lounge Suite offers an unobstructed skyline view through floor-to-ceiling glass. The open-plan living and dining area creates a sense of limitless space and sophistication.",
+      "amenities": ["WiFi", "Air Conditioning", "Wet Bar", "Flat Screen TV", "Room Service", "Soaking Tub", "Rain Shower", "Private Balcony", "Safe", "Espresso Machine", "Bathrobe", "Living Room", "Dining Area"],
+      "images": [
+        "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+        "https://images.unsplash.com/photo-1587985064135-0366536eab42?w=800"
+      ],
+      "pricePerNight": 699,
+      "maxGuests": 4,
+      "bedType": "King",
+      "size": 1100,
+      "floor": 10,
+      "status": "available"
+    }
+  ],
+  "bookings": [
+    {
+      "bookingRef": "BK100001",
+      "guestName": "John Smith",
+      "guestEmail": "john.smith@example.com",
+      "guestPhone": "+1 (555) 234-5678",
+      "roomSlug": "ocean-view-standard",
+      "checkIn": "2026-07-15",
+      "checkOut": "2026-07-18",
+      "nights": 3,
+      "totalAmount": 567,
+      "status": "confirmed"
+    },
+    {
+      "bookingRef": "BK100002",
+      "guestName": "John Smith",
+      "guestEmail": "john.smith@example.com",
+      "guestPhone": "+1 (555) 234-5678",
+      "roomSlug": "garden-deluxe",
+      "checkIn": "2026-08-10",
+      "checkOut": "2026-08-14",
+      "nights": 4,
+      "totalAmount": 1156,
+      "status": "pending_payment"
+    },
+    {
+      "bookingRef": "BK100003",
+      "guestName": "John Smith",
+      "guestEmail": "john.smith@example.com",
+      "guestPhone": "+1 (555) 234-5678",
+      "roomSlug": "executive-suite",
+      "checkIn": "2026-05-01",
+      "checkOut": "2026-05-05",
+      "nights": 4,
+      "totalAmount": 1956,
+      "status": "completed"
+    },
+    {
+      "bookingRef": "BK100004",
+      "guestName": "John Smith",
+      "guestEmail": "john.smith@example.com",
+      "guestPhone": "+1 (555) 234-5678",
+      "roomSlug": "pool-view-standard",
+      "checkIn": "2026-04-20",
+      "checkOut": "2026-04-22",
+      "nights": 2,
+      "totalAmount": 438,
+      "status": "cancelled"
+    },
+    {
+      "bookingRef": "BK100005",
+      "guestName": "Emily Johnson",
+      "guestEmail": "emily.j@example.com",
+      "guestPhone": "+1 (555) 987-6543",
+      "roomSlug": "coastal-deluxe",
+      "checkIn": "2026-06-10",
+      "checkOut": "2026-06-13",
+      "nights": 3,
+      "totalAmount": 987,
+      "status": "checked_in"
+    },
+    {
+      "bookingRef": "BK100006",
+      "guestName": "Michael Chen",
+      "guestEmail": "m.chen@example.com",
+      "guestPhone": "+1 (555) 456-7890",
+      "roomSlug": "penthouse-horizon",
+      "checkIn": "2026-06-20",
+      "checkOut": "2026-06-23",
+      "nights": 3,
+      "totalAmount": 3897,
+      "status": "confirmed"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "1",
+      "name": "Sarah & James Williams",
+      "location": "New York, USA",
+      "rating": 5,
+      "text": "LumaStay exceeded every expectation. From the moment we arrived, the staff made us feel like royalty. The Ocean View Suite was breathtaking, and the butler service was impeccable. We will absolutely be returning for our anniversary.",
+      "date": "2026-04-15"
+    },
+    {
+      "id": "2",
+      "name": "Akira Tanaka",
+      "location": "Tokyo, Japan",
+      "rating": 5,
+      "text": "As a frequent luxury traveler, I have high standards. LumaStay met them all. The attention to detail in the Penthouse was extraordinary — the private pool, the curated minibar, the sunrise views. A truly world-class experience.",
+      "date": "2026-03-28"
+    },
+    {
+      "id": "3",
+      "name": "The Patel Family",
+      "location": "London, UK",
+      "rating": 5,
+      "text": "We came as a family of four and the staff treated our children like little VIPs. The Family Suite had everything we needed, and the activities program kept the kids entertained while my husband and I enjoyed the spa. Perfect balance.",
+      "date": "2026-05-02"
+    },
+    {
+      "id": "4",
+      "name": "Camille Dubois",
+      "location": "Paris, France",
+      "rating": 4,
+      "text": "Beautiful hotel with a wonderful atmosphere. The Garden Deluxe room was sublime — the soaking tub alone was worth the trip. The restaurant offered excellent cuisine. Only minor suggestion: extend the breakfast hours.",
+      "date": "2026-02-18"
+    }
+  ],
+  "hotelInfo": {
+    "name": "LumaStay",
+    "tagline": "Where Luxury Meets Serenity",
+    "address": "1 Coastal Boulevard, Sunset Bay, CA 90210",
+    "phone": "+1 (800) 586-2782",
+    "email": "hello@lumastay.com",
+    "rating": 4.9,
+    "reviewCount": 847,
+    "yearEstablished": 2019
+  },
+  "stats": {
+    "totalRooms": 8,
+    "availableRooms": 5,
+    "totalBookings": 6,
+    "occupancyRate": 62
+  }
+}
