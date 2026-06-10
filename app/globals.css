@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 34 100% 97%;
+    --foreground: 221 39% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 221 39% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 221 39% 11%;
+
+    --primary: 221 53% 9%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 38 57% 89%;
+    --secondary-foreground: 221 39% 11%;
+
+    --muted: 38 57% 89%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 9 93% 67%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 9 93% 67%;
+
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, #FFF8EF 0%, #FFFFFF 52%, #F3E7D3 100%);
+  }
+
+  .navy-gradient {
+    background: linear-gradient(135deg, #0B1324 0%, #111827 100%);
+  }
+
+  .coral-glow {
+    background: radial-gradient(circle, rgba(249, 115, 91, 0.18) 0%, rgba(249, 115, 91, 0) 62%);
+  }
+}
