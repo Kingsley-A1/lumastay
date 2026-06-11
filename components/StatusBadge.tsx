@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/Badge";
-import { getStatusLabel, getStatusColor } from "@/lib/booking";
+import { getStatusLabel } from "@/lib/booking";
 import { BookingStatus } from "@/lib/types";
 
 interface StatusBadgeProps {

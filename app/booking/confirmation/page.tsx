@@ -1,58 +1,95 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { getBookingByRef, getRoomBySlug } from "@/lib/data";
-import { formatDate, formatCurrency, calculateNights } from "@/lib/utils";
+import { getRoomBySlug } from "@/lib/data";
+import { useBooking, useHydrated } from "@/lib/useBookings";
+import { formatDate, formatCurrency } from "@/lib/utils";
 import { StatusBadge } from "@/components/StatusBadge";
+import { BookingStatus } from "@/lib/types";
 import Link from "next/link";
 
-interface LocalBooking {
-  bookingRef: string;
-  guestName: string;
-  guestEmail: string;
-  guestPhone: string;
-  roomSlug: string;
-  roomName: string;
-  checkIn: string;
-  checkOut: string;
-  guests: number;
-  status: string;
+const CHECK_ICON = "M5 13l4 4L19 7";
+const CLOCK_ICON = "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z";
+const X_ICON = "M6 18L18 6M6 6l12 12";
+
+function getBanner(status: BookingStatus | string): {
+  bg: string;
+  icon: string;
+  title: string;
+  subtitle: string;
+} {
+  switch (status) {
+    case BookingStatus.PendingPayment:
+      return {
+        bg: "#F59E0B",
+        icon: CLOCK_ICON,
+        title: "Payment Pending",
+        subtitle: "Your reservation is held. Complete payment to confirm your stay.",
+      };
+    case BookingStatus.CheckedIn:
+      return {
+        bg: "#2F7D6D",
+        icon: CHECK_ICON,
+        title: "You're Checked In",
+        subtitle: "Welcome to LumaStay. Enjoy your stay with us.",
+      };
+    case BookingStatus.CheckedOut:
+    case BookingStatus.Completed:
+      return {
+        bg: "#0B1324",
+        icon: CHECK_ICON,
+        title: "Stay Completed",
+        subtitle: "Thank you for staying at LumaStay. We hope to welcome you again soon.",
+      };
+    case BookingStatus.Cancelled:
+      return {
+        bg: "#DC2626",
+        icon: X_ICON,
+        title: "Booking Cancelled",
+        subtitle: "This reservation has been cancelled. No further action is needed.",
+      };
+    case BookingStatus.Refunded:
+      return {
+        bg: "#64748B",
+        icon: CHECK_ICON,
+        title: "Booking Refunded",
+        subtitle: "This reservation was cancelled and the amount has been refunded.",
+      };
+    case BookingStatus.Expired:
+      return {
+        bg: "#64748B",
+        icon: X_ICON,
+        title: "Booking Expired",
+        subtitle: "This reservation expired before payment was completed.",
+      };
+    case BookingStatus.Confirmed:
+    default:
+      return {
+        bg: "#16A34A",
+        icon: CHECK_ICON,
+        title: "Booking Confirmed!",
+        subtitle: "Your reservation has been successfully placed. A confirmation email has been sent.",
+      };
+  }
 }
 
 function ConfirmationContent() {
   const searchParams = useSearchParams();
   const ref = searchParams.get("ref") || "";
-  const [localBooking, setLocalBooking] = useState<LocalBooking | null>(null);
 
-  useEffect(() => {
-    if (ref) {
-      const stored = localStorage.getItem(`booking_${ref}`);
-      if (stored) {
-        setLocalBooking(JSON.parse(stored));
-      }
-    }
-  }, [ref]);
+  // Resolve the booking through the store so localStorage-backed reservations
+  // (created at checkout) are included alongside the seed data.
+  const booking = useBooking(ref);
+  const loaded = useHydrated();
 
-  // Try data store first, then localStorage
-  const dataBooking = getBookingByRef(ref);
-  const room = dataBooking
-    ? getRoomBySlug(dataBooking.roomSlug)
-    : localBooking
-    ? getRoomBySlug(localBooking.roomSlug)
-    : null;
-
-  const guestName = dataBooking?.guestName ?? localBooking?.guestName ?? "Guest";
-  const checkIn = dataBooking?.checkIn ?? localBooking?.checkIn ?? "";
-  const checkOut = dataBooking?.checkOut ?? localBooking?.checkOut ?? "";
-  const nights = dataBooking?.nights ?? (checkIn && checkOut ? calculateNights(checkIn, checkOut) : 0);
-  const status = dataBooking?.status ?? localBooking?.status ?? "confirmed";
-
-  let totalAmount = dataBooking?.totalAmount;
-  if (!totalAmount && room && nights) {
-    const sub = room.pricePerNight * nights;
-    totalAmount = sub + Math.round(sub * 0.12);
-  }
+  const room = booking ? getRoomBySlug(booking.roomSlug) : null;
+  const guestName = booking?.guestName ?? "Guest";
+  const checkIn = booking?.checkIn ?? "";
+  const checkOut = booking?.checkOut ?? "";
+  const nights = booking?.nights ?? 0;
+  const status = booking?.status ?? "confirmed";
+  const totalAmount = booking?.totalAmount;
 
   if (!ref) {
     return (
@@ -67,20 +104,41 @@ function ConfirmationContent() {
     );
   }
 
+  if (loaded && !booking) {
+    return (
+      <div className="min-h-screen bg-[#FFF8EF] flex items-center justify-center">
+        <div className="text-center px-4">
+          <p className="text-2xl font-bold text-[#0B1324] mb-2">
+            We couldn&apos;t find booking {ref}
+          </p>
+          <p className="text-[#64748B] mb-6">
+            The reference may be incorrect or the booking was made on another device.
+          </p>
+          <Link href="/dashboard" className="bg-[#F9735B] text-white px-6 py-3 rounded-xl font-semibold">
+            Go to Dashboard
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const banner = getBanner(status);
+
   return (
     <div className="min-h-screen bg-[#FFF8EF] py-12">
       <div className="max-w-2xl mx-auto px-4">
-        {/* Success Banner */}
-        <div className="bg-[#16A34A] rounded-2xl p-8 text-center text-white mb-8 shadow-lg">
+        {/* Status Banner */}
+        <div
+          className="rounded-2xl p-8 text-center text-white mb-8 shadow-lg"
+          style={{ backgroundColor: banner.bg }}
+        >
           <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-[#16A34A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+            <svg className="w-8 h-8" style={{ color: banner.bg }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d={banner.icon} />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold mb-2">Booking Confirmed!</h1>
-          <p className="text-white/85 text-lg">
-            Your reservation has been successfully placed. A confirmation email has been sent.
-          </p>
+          <h1 className="text-3xl font-bold mb-2">{banner.title}</h1>
+          <p className="text-white/85 text-lg">{banner.subtitle}</p>
         </div>
 
         {/* Booking Reference */}
@@ -124,32 +182,40 @@ function ConfirmationContent() {
           </div>
 
           <div className="bg-[#FFF8EF] rounded-xl p-4 flex justify-between items-center">
-            <span className="text-[#64748B] font-medium">Total Paid</span>
+            <span className="text-[#64748B] font-medium">
+              {status === BookingStatus.PendingPayment
+                ? "Amount Due"
+                : status === BookingStatus.Refunded
+                ? "Amount Refunded"
+                : "Total Paid"}
+            </span>
             <span className="text-[#F9735B] font-bold text-2xl">
               {totalAmount ? formatCurrency(totalAmount) : "—"}
             </span>
           </div>
         </div>
 
-        {/* Next Steps */}
-        <div className="bg-[#F3E7D3] rounded-2xl p-6 mb-6">
-          <h2 className="font-bold text-[#0B1324] mb-3">What Happens Next?</h2>
-          <ul className="space-y-2">
-            {[
-              "You will receive a confirmation email shortly",
-              "Check-in is available from 3:00 PM on your arrival date",
-              "Present your booking reference at reception",
-              "Contact us for any special arrangements",
-            ].map((step, i) => (
-              <li key={i} className="flex items-center gap-2 text-sm text-[#64748B]">
-                <span className="w-5 h-5 rounded-full bg-[#F9735B] text-white text-xs flex items-center justify-center shrink-0">
-                  {i + 1}
-                </span>
-                {step}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Next Steps — only relevant for live, upcoming reservations */}
+        {(status === BookingStatus.Confirmed || status === BookingStatus.CheckedIn) && (
+          <div className="bg-[#F3E7D3] rounded-2xl p-6 mb-6">
+            <h2 className="font-bold text-[#0B1324] mb-3">What Happens Next?</h2>
+            <ul className="space-y-2">
+              {[
+                "You will receive a confirmation email shortly",
+                "Check-in is available from 3:00 PM on your arrival date",
+                "Present your booking reference at reception",
+                "Contact us for any special arrangements",
+              ].map((step, i) => (
+                <li key={i} className="flex items-center gap-2 text-sm text-[#64748B]">
+                  <span className="w-5 h-5 rounded-full bg-[#F9735B] text-white text-xs flex items-center justify-center shrink-0">
+                    {i + 1}
+                  </span>
+                  {step}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4">

@@ -158,6 +158,86 @@
       "bedType": "King",
       "size": 1100,
       "floor": 10,
+      "status": "occupied"
+    },
+    {
+      "id": "9",
+      "slug": "sunset-junior-suite",
+      "name": "Sunset Junior Suite",
+      "type": "deluxe",
+      "description": "Bathed in golden afternoon light, the Sunset Junior Suite pairs a plush sitting area with a west-facing terrace built for golden-hour views. A refined retreat for couples seeking space without stepping up to a full suite.",
+      "amenities": ["WiFi", "Air Conditioning", "Mini Bar", "Flat Screen TV", "Room Service", "Soaking Tub", "Walk-in Shower", "Private Terrace", "Safe", "Coffee Maker", "Bathrobe", "Sitting Area"],
+      "images": [
+        "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+        "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800"
+      ],
+      "pricePerNight": 379,
+      "maxGuests": 2,
+      "bedType": "King",
+      "size": 540,
+      "floor": 5,
+      "status": "available"
+    },
+    {
+      "id": "10",
+      "slug": "mountain-view-standard",
+      "name": "Mountain View Standard",
+      "type": "standard",
+      "description": "Set on the quiet side of the resort, the Mountain View Standard looks out over rolling green hills and morning mist. A calm, light-filled room for travelers who value rest and a slower pace.",
+      "amenities": ["WiFi", "Air Conditioning", "Mini Bar", "Flat Screen TV", "Room Service", "Safe", "Hair Dryer", "Balcony", "Coffee Maker"],
+      "images": [
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+        "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800",
+        "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+      ],
+      "pricePerNight": 199,
+      "maxGuests": 2,
+      "bedType": "Queen",
+      "size": 340,
+      "floor": 3,
+      "status": "available"
+    },
+    {
+      "id": "11",
+      "slug": "royal-penthouse",
+      "name": "Royal Penthouse",
+      "type": "penthouse",
+      "description": "The Royal Penthouse spans an entire floor with a wraparound terrace, private cinema, and dedicated butler suite. Reserved for those who expect the extraordinary, every detail is tailored to the guest in residence.",
+      "amenities": ["WiFi", "Air Conditioning", "Full Bar", "Multiple Flat Screen TVs", "24/7 Butler", "Soaking Tub", "Rain Shower", "Private Pool", "Wraparound Terrace", "Private Cinema", "Safe", "Coffee Machine", "Bathrobe", "Full Kitchen", "Dining Room", "Living Room", "Private Gym", "Wine Cellar"],
+      "images": [
+        "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800",
+        "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=800",
+        "https://images.unsplash.com/photo-1587985064135-0366536eab42?w=800",
+        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800"
+      ],
+      "pricePerNight": 1599,
+      "maxGuests": 6,
+      "bedType": "Two Kings",
+      "size": 3200,
+      "floor": 14,
+      "status": "occupied"
+    },
+    {
+      "id": "12",
+      "slug": "honeymoon-deluxe",
+      "name": "Honeymoon Deluxe",
+      "type": "deluxe",
+      "description": "Designed for romance, the Honeymoon Deluxe features a canopy bed, a private heart-shaped soaking tub, and a candlelit terrace overlooking the bay. A welcome bottle of champagne greets every couple on arrival.",
+      "amenities": ["WiFi", "Air Conditioning", "Mini Bar", "Flat Screen TV", "Room Service", "Soaking Tub", "Rain Shower", "Private Terrace", "Safe", "Coffee Maker", "Bathrobe", "Champagne Service", "Canopy Bed"],
+      "images": [
+        "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800",
+        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
+        "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?w=800"
+      ],
+      "pricePerNight": 419,
+      "maxGuests": 2,
+      "bedType": "King",
+      "size": 560,
+      "floor": 7,
       "status": "available"
     }
   ],
@@ -171,7 +251,7 @@
       "checkIn": "2026-07-15",
       "checkOut": "2026-07-18",
       "nights": 3,
-      "totalAmount": 567,
+      "totalAmount": 635,
       "status": "confirmed"
     },
     {
@@ -183,7 +263,7 @@
       "checkIn": "2026-08-10",
       "checkOut": "2026-08-14",
       "nights": 4,
-      "totalAmount": 1156,
+      "totalAmount": 1295,
       "status": "pending_payment"
     },
     {
@@ -195,7 +275,7 @@
       "checkIn": "2026-05-01",
       "checkOut": "2026-05-05",
       "nights": 4,
-      "totalAmount": 1956,
+      "totalAmount": 2191,
       "status": "completed"
     },
     {
@@ -207,8 +287,44 @@
       "checkIn": "2026-04-20",
       "checkOut": "2026-04-22",
       "nights": 2,
-      "totalAmount": 438,
+      "totalAmount": 491,
       "status": "cancelled"
+    },
+    {
+      "bookingRef": "BK100007",
+      "guestName": "John Smith",
+      "guestEmail": "john.smith@example.com",
+      "guestPhone": "+1 (555) 234-5678",
+      "roomSlug": "sky-lounge-suite",
+      "checkIn": "2026-06-09",
+      "checkOut": "2026-06-11",
+      "nights": 2,
+      "totalAmount": 1566,
+      "status": "checked_in"
+    },
+    {
+      "bookingRef": "BK100008",
+      "guestName": "John Smith",
+      "guestEmail": "john.smith@example.com",
+      "guestPhone": "+1 (555) 234-5678",
+      "roomSlug": "sunset-junior-suite",
+      "checkIn": "2026-06-01",
+      "checkOut": "2026-06-04",
+      "nights": 3,
+      "totalAmount": 1273,
+      "status": "checked_out"
+    },
+    {
+      "bookingRef": "BK100009",
+      "guestName": "John Smith",
+      "guestEmail": "john.smith@example.com",
+      "guestPhone": "+1 (555) 234-5678",
+      "roomSlug": "mountain-view-standard",
+      "checkIn": "2026-03-12",
+      "checkOut": "2026-03-16",
+      "nights": 4,
+      "totalAmount": 892,
+      "status": "refunded"
     },
     {
       "bookingRef": "BK100005",
@@ -219,7 +335,7 @@
       "checkIn": "2026-06-10",
       "checkOut": "2026-06-13",
       "nights": 3,
-      "totalAmount": 987,
+      "totalAmount": 1105,
       "status": "checked_in"
     },
     {
@@ -231,8 +347,56 @@
       "checkIn": "2026-06-20",
       "checkOut": "2026-06-23",
       "nights": 3,
-      "totalAmount": 3897,
+      "totalAmount": 4365,
       "status": "confirmed"
+    },
+    {
+      "bookingRef": "BK100010",
+      "guestName": "Sofia Martinez",
+      "guestEmail": "sofia.m@example.com",
+      "guestPhone": "+34 612 345 678",
+      "roomSlug": "royal-penthouse",
+      "checkIn": "2026-06-15",
+      "checkOut": "2026-06-17",
+      "nights": 2,
+      "totalAmount": 3582,
+      "status": "confirmed"
+    },
+    {
+      "bookingRef": "BK100011",
+      "guestName": "David Okafor",
+      "guestEmail": "d.okafor@example.com",
+      "guestPhone": "+44 7700 900123",
+      "roomSlug": "family-suite",
+      "checkIn": "2026-02-05",
+      "checkOut": "2026-02-10",
+      "nights": 5,
+      "totalAmount": 3074,
+      "status": "expired"
+    },
+    {
+      "bookingRef": "BK100012",
+      "guestName": "Liam O'Brien",
+      "guestEmail": "liam.ob@example.com",
+      "guestPhone": "+353 1 234 5678",
+      "roomSlug": "honeymoon-deluxe",
+      "checkIn": "2026-05-18",
+      "checkOut": "2026-05-21",
+      "nights": 3,
+      "totalAmount": 1408,
+      "status": "completed"
+    },
+    {
+      "bookingRef": "BK100013",
+      "guestName": "Aisha Rahman",
+      "guestEmail": "a.rahman@example.com",
+      "guestPhone": "+971 50 123 4567",
+      "roomSlug": "sky-lounge-suite",
+      "checkIn": "2026-07-02",
+      "checkOut": "2026-07-04",
+      "nights": 2,
+      "totalAmount": 1566,
+      "status": "pending_payment"
     }
   ],
   "testimonials": [
@@ -267,6 +431,22 @@
       "rating": 4,
       "text": "Beautiful hotel with a wonderful atmosphere. The Garden Deluxe room was sublime — the soaking tub alone was worth the trip. The restaurant offered excellent cuisine. Only minor suggestion: extend the breakfast hours.",
       "date": "2026-02-18"
+    },
+    {
+      "id": "5",
+      "name": "Marco Rossi",
+      "location": "Milan, Italy",
+      "rating": 5,
+      "text": "The Sky Lounge Suite is a work of art. Floor-to-ceiling glass, a sunset that fills the whole room, and a concierge who anticipated every request before I made it. Dinner at the rooftop restaurant was the finest meal of our trip.",
+      "date": "2026-05-20"
+    },
+    {
+      "id": "6",
+      "name": "Grace Kim",
+      "location": "Seoul, South Korea",
+      "rating": 5,
+      "text": "I booked the spa package on a whim and it became the highlight of my year. The therapists were exceptional, the facilities pristine, and the quiet ocean-side relaxation rooms gave me the reset I didn't know I needed. Flawless service throughout.",
+      "date": "2026-04-30"
     }
   ],
   "hotelInfo": {
@@ -276,13 +456,13 @@
     "phone": "+1 (800) 586-2782",
     "email": "hello@lumastay.com",
     "rating": 4.9,
-    "reviewCount": 847,
+    "reviewCount": 921,
     "yearEstablished": 2019
   },
   "stats": {
-    "totalRooms": 8,
-    "availableRooms": 5,
-    "totalBookings": 6,
-    "occupancyRate": 62
+    "totalRooms": 12,
+    "availableRooms": 8,
+    "totalBookings": 13,
+    "occupancyRate": 74
   }
 }

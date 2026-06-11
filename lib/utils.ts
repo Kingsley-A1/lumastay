@@ -27,6 +27,23 @@ export function calculateTotal(pricePerNight: number, nights: number): number {
   return pricePerNight * nights;
 }
 
+/** Tax + service rate applied to every reservation across the app. */
+export const TAX_RATE = 0.12;
+
+/**
+ * Single source of truth for reservation pricing. Every surface (room detail,
+ * booking summary, checkout, confirmation, seed data) computes totals through
+ * this helper so figures never drift apart.
+ */
+export function calculatePricing(
+  pricePerNight: number,
+  nights: number
+): import("./types").PriceBreakdown {
+  const subtotal = pricePerNight * Math.max(0, nights);
+  const taxes = Math.round(subtotal * TAX_RATE);
+  return { subtotal, taxes, total: subtotal + taxes };
+}
+
 export function cn(...classes: (string | undefined | null | boolean)[]): string {
   return classes.filter(Boolean).join(" ");
 }

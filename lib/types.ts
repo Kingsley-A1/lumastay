@@ -1,11 +1,15 @@
 export enum BookingStatus {
+  // Normal lifecycle
   Draft = "draft",
   PendingPayment = "pending_payment",
   Confirmed = "confirmed",
   CheckedIn = "checked_in",
   CheckedOut = "checked_out",
   Completed = "completed",
+  // Exception states
   Cancelled = "cancelled",
+  Refunded = "refunded",
+  Expired = "expired",
 }
 
 export type RoomType = "standard" | "deluxe" | "suite" | "penthouse";
@@ -38,6 +42,20 @@ export interface Booking {
   nights: number;
   totalAmount: number;
   status: BookingStatus | string;
+  /** Optional free-text guest requests captured at checkout. */
+  specialRequests?: string;
+  /** Number of guests on the reservation. */
+  guests?: number;
+  /** ISO timestamp of when the booking was created (user bookings only). */
+  createdAt?: string;
+  /** True for reservations created by the guest in this browser session. */
+  isUserCreated?: boolean;
+}
+
+export interface PriceBreakdown {
+  subtotal: number;
+  taxes: number;
+  total: number;
 }
 
 export interface Testimonial {

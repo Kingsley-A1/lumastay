@@ -1,5 +1,5 @@
 import { Room } from "@/lib/types";
-import { formatCurrency, formatDate, calculateNights, calculateTotal } from "@/lib/utils";
+import { formatCurrency, formatDate, calculateNights, calculatePricing } from "@/lib/utils";
 
 interface BookingSummaryProps {
   room: Room;
@@ -10,9 +10,7 @@ interface BookingSummaryProps {
 
 export function BookingSummary({ room, checkIn, checkOut, guests }: BookingSummaryProps) {
   const nights = calculateNights(checkIn, checkOut);
-  const subtotal = calculateTotal(room.pricePerNight, nights);
-  const taxes = Math.round(subtotal * 0.12);
-  const total = subtotal + taxes;
+  const { subtotal, taxes, total } = calculatePricing(room.pricePerNight, nights);
 
   return (
     <div className="bg-white rounded-2xl shadow-md p-6 sticky top-24">

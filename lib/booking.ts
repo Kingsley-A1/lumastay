@@ -9,6 +9,8 @@ export function getStatusLabel(status: BookingStatus | string): string {
     [BookingStatus.CheckedOut]: "Checked Out",
     [BookingStatus.Completed]: "Completed",
     [BookingStatus.Cancelled]: "Cancelled",
+    [BookingStatus.Refunded]: "Refunded",
+    [BookingStatus.Expired]: "Expired",
   };
   return labels[status] ?? status;
 }
@@ -22,9 +24,21 @@ export function getStatusColor(status: BookingStatus | string): string {
     [BookingStatus.CheckedOut]: "bg-purple-100 text-purple-800",
     [BookingStatus.Completed]: "bg-green-100 text-green-800",
     [BookingStatus.Cancelled]: "bg-red-100 text-red-800",
+    [BookingStatus.Refunded]: "bg-slate-100 text-slate-700",
+    [BookingStatus.Expired]: "bg-gray-100 text-gray-500",
   };
   return colors[status] ?? "bg-gray-100 text-gray-700";
 }
+
+/** The ordered, normal (non-exception) booking lifecycle. */
+export const BOOKING_LIFECYCLE: BookingStatus[] = [
+  BookingStatus.Draft,
+  BookingStatus.PendingPayment,
+  BookingStatus.Confirmed,
+  BookingStatus.CheckedIn,
+  BookingStatus.CheckedOut,
+  BookingStatus.Completed,
+];
 
 export function getNextStatus(status: BookingStatus): BookingStatus | null {
   const flow: Partial<Record<BookingStatus, BookingStatus>> = {
@@ -37,10 +51,52 @@ export function getNextStatus(status: BookingStatus): BookingStatus | null {
   return flow[status] ?? null;
 }
 
+/** Active = the reservation is live and upcoming/in-progress. */
 export function isBookingActive(status: BookingStatus | string): boolean {
   return [
+    BookingStatus.PendingPayment,
     BookingStatus.Confirmed,
     BookingStatus.CheckedIn,
+  ].includes(status as BookingStatus);
+}
+
+/** A guest may cancel a reservation that has not yet started or finished. */
+export function isCancellable(status: BookingStatus | string): boolean {
+  return [
+    BookingStatus.Draft,
     BookingStatus.PendingPayment,
+    BookingStatus.Confirmed,
+  ].includes(status as BookingStatus);
+}
+
+/** Terminal exception states the lifecycle cannot advance from. */
+export function isExceptionStatus(status: BookingStatus | string): boolean {
+  return [
+    BookingStatus.Cancelled,
+    BookingStatus.Refunded,
+    BookingStatus.Expired,
+  ].includes(status as BookingStatus);
+}
+
+/** Buckets used by the dashboard filter tabs. */
+export function isUpcoming(status: BookingStatus | string): boolean {
+  return [
+    BookingStatus.PendingPayment,
+    BookingStatus.Confirmed,
+    BookingStatus.CheckedIn,
+  ].includes(status as BookingStatus);
+}
+
+export function isCompleted(status: BookingStatus | string): boolean {
+  return [BookingStatus.CheckedOut, BookingStatus.Completed].includes(
+    status as BookingStatus
+  );
+}
+
+export function isCancelled(status: BookingStatus | string): boolean {
+  return [
+    BookingStatus.Cancelled,
+    BookingStatus.Refunded,
+    BookingStatus.Expired,
   ].includes(status as BookingStatus);
 }

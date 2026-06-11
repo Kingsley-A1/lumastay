@@ -2,9 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getRooms, getRoomBySlug } from "@/lib/data";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency, calculatePricing } from "@/lib/utils";
 import { AmenityIcon } from "@/components/AmenityIcon";
-import { Button } from "@/components/ui/Button";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -45,8 +44,14 @@ export default async function RoomDetailPage({ params }: Props) {
     penthouse: "Penthouse",
   };
 
-  const today = new Date().toISOString().split("T")[0];
-  const tomorrow = new Date(Date.now() + 86400000).toISOString().split("T")[0];
+  const todayDate = new Date();
+  const today = todayDate.toISOString().split("T")[0];
+  const tomorrowDate = new Date(todayDate);
+  tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+  const tomorrow = tomorrowDate.toISOString().split("T")[0];
+
+  // One-night estimate shown in the pricing sidebar.
+  const estimate = calculatePricing(room.pricePerNight, 1);
 
   return (
     <div className="min-h-screen bg-[#FFF8EF]">
@@ -213,19 +218,19 @@ export default async function RoomDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              {/* Price Estimate */}
+              {/* Price Estimate (1 night) */}
               <div className="border-t border-[#E5E7EB] pt-4 mb-5 space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-[#64748B]">{formatCurrency(room.pricePerNight)} × 1 night</span>
-                  <span className="text-[#0B1324]">{formatCurrency(room.pricePerNight)}</span>
+                  <span className="text-[#0B1324]">{formatCurrency(estimate.subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#64748B]">Taxes & fees</span>
-                  <span className="text-[#0B1324]">{formatCurrency(Math.round(room.pricePerNight * 0.12) + 35)}</span>
+                  <span className="text-[#64748B]">Taxes &amp; fees (12%)</span>
+                  <span className="text-[#0B1324]">{formatCurrency(estimate.taxes)}</span>
                 </div>
                 <div className="flex justify-between font-bold text-[#0B1324]">
                   <span>Est. Total</span>
-                  <span className="text-[#F9735B]">{formatCurrency(Math.round(room.pricePerNight * 1.12) + 35)}</span>
+                  <span className="text-[#F9735B]">{formatCurrency(estimate.total)}</span>
                 </div>
               </div>
 

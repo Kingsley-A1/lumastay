@@ -2,9 +2,12 @@
 
 import { Suspense, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import { getRoomBySlug } from "@/lib/data";
 import { BookingSummary } from "@/components/BookingSummary";
-import { generateBookingRef } from "@/lib/utils";
+import { generateBookingRef, calculateNights, calculatePricing } from "@/lib/utils";
+import { saveBooking } from "@/lib/store";
+import { BookingStatus } from "@/lib/types";
 
 function CheckoutContent() {
   const searchParams = useSearchParams();
@@ -80,22 +83,26 @@ function CheckoutContent() {
     await new Promise((res) => setTimeout(res, 1500));
 
     const ref = generateBookingRef();
+    const nights = calculateNights(checkIn, checkOut);
+    const { total } = calculatePricing(room?.pricePerNight ?? 0, nights);
 
-    // Store booking data in localStorage
-    const bookingData = {
+    // Persist the reservation through the shared booking store so it shows up
+    // in the confirmation, the guest dashboard, and the admin operations view.
+    saveBooking({
       bookingRef: ref,
-      guestName: `${form.firstName} ${form.lastName}`,
+      guestName: `${form.firstName} ${form.lastName}`.trim(),
       guestEmail: form.email,
       guestPhone: form.phone,
-      specialRequests: form.specialRequests,
       roomSlug,
-      roomName: room?.name,
       checkIn,
       checkOut,
+      nights,
+      totalAmount: total,
+      status: BookingStatus.Confirmed,
+      specialRequests: form.specialRequests || undefined,
       guests,
-      status: "confirmed",
-    };
-    localStorage.setItem(`booking_${ref}`, JSON.stringify(bookingData));
+      createdAt: new Date().toISOString(),
+    });
 
     router.push(`/booking/confirmation?ref=${ref}`);
   };
@@ -103,7 +110,7 @@ function CheckoutContent() {
   if (!room) {
     return (
       <div className="min-h-screen bg-[#FFF8EF] flex items-center justify-center">
-        <p className="text-[#64748B]">Room not found. <a href="/rooms" className="text-[#F9735B] underline">Browse rooms</a></p>
+        <p className="text-[#64748B]">Room not found. <Link href="/rooms" className="text-[#F9735B] underline">Browse rooms</Link></p>
       </div>
     );
   }

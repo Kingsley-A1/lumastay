@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { getRooms, getBookings, getRoomBySlug, getStats } from "@/lib/data";
+import { getRooms, getRoomBySlug, getStats } from "@/lib/data";
+import { useAllBookings } from "@/lib/useBookings";
+import { isCancelled } from "@/lib/booking";
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { StatusBadge } from "@/components/StatusBadge";
 import { Badge } from "@/components/ui/Badge";
@@ -10,8 +11,10 @@ import { Badge } from "@/components/ui/Badge";
 export default function AdminPage() {
   const router = useRouter();
   const rooms = getRooms();
-  const bookings = getBookings();
   const stats = getStats();
+
+  // Merged booking ledger (seed + any reservations created in this browser).
+  const bookings = useAllBookings();
 
   const today = new Date();
   const nextWeek = new Date(today);
@@ -19,11 +22,11 @@ export default function AdminPage() {
 
   const upcomingCheckIns = bookings.filter((b) => {
     const checkIn = new Date(b.checkIn);
-    return checkIn >= today && checkIn <= nextWeek && b.status !== "cancelled";
+    return checkIn >= today && checkIn <= nextWeek && !isCancelled(b.status);
   });
 
   const totalRevenue = bookings
-    .filter((b) => b.status !== "cancelled" && b.status !== "draft")
+    .filter((b) => !isCancelled(b.status) && b.status !== "draft")
     .reduce((sum, b) => sum + b.totalAmount, 0);
 
   const occupiedCount = rooms.filter((r) => r.status === "occupied").length;
@@ -33,7 +36,7 @@ export default function AdminPage() {
     { label: "Available", value: stats.availableRooms, icon: "✅", color: "text-[#16A34A]", bg: "bg-green-50" },
     { label: "Occupied", value: occupiedCount, icon: "🔴", color: "text-[#F59E0B]", bg: "bg-amber-50" },
     { label: "Total Revenue", value: formatCurrency(totalRevenue), icon: "💰", color: "text-[#2F7D6D]", bg: "bg-teal-50" },
-    { label: "Total Bookings", value: stats.totalBookings, icon: "📋", color: "text-[#0B1324]", bg: "bg-white" },
+    { label: "Total Bookings", value: bookings.length, icon: "📋", color: "text-[#0B1324]", bg: "bg-white" },
     { label: "Occupancy Rate", value: `${stats.occupancyRate}%`, icon: "📊", color: "text-[#F9735B]", bg: "bg-[#F9735B]/10" },
   ];
 
